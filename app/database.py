@@ -2,12 +2,13 @@ from urllib.parse import quote
 from sqlalchemy import create_engine
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import sessionmaker
-import psycopg2
-from psycopg2.extras import RealDictCursor
 import time
 from .config import settings
 
-SQLALCHEMY_DATABASE_URI = f"postgresql://{settings.database_username}:%s@{settings.database_hostname}:{settings.database_port}/{settings.database_name}" % quote(settings.database_password)
+SQLALCHEMY_DATABASE_URI = (
+    f"postgresql://{settings.database_username}:%s@{settings.database_hostname}:{settings.database_port}/{settings.database_name}"
+    % quote(settings.database_password)
+)
 
 engine = create_engine(SQLALCHEMY_DATABASE_URI)
 
